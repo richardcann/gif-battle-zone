@@ -2,18 +2,19 @@
 import 'antd/lib/input/style/css';
 import React from 'react';
 import { Input } from 'antd';
+
 const Search = Input.Search;
 
 type BarProps = {
-  placholder: string
+  placeholder: string
 }
 
-export default function SearchBar(props : BarProps){
-  const {placeholder} = props;
-  return(
+export default function SearchBar(props : BarProps) {
+  const { placeholder } = props;
+  return (
     <Search
       placeholder={placeholder}
-      onSearch={value => console.log(value)}
+      onSearch={(value) => console.log(value)}
       enterButton
-    />)
+    />);
 }
