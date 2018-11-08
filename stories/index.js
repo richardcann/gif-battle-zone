@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import CategoryButton from '../app/components/CategoryButton';
 import SearchBar from '../app/components/SearchBar';
+import DisplayCard from '../app/components/DisplayCard';
 
 storiesOf('Button', module)
   .add('with text', () => (
@@ -12,4 +13,9 @@ storiesOf('Button', module)
 storiesOf('SearchBar', module)
   .add('with text', () => (
     <SearchBar onClick={action('clicked')} placeholder="input text" />
+  ));
+
+storiesOf('DisplayCard', module)
+  .add('gif', () => (
+    <DisplayCard url="https://media0.giphy.com/media/WyNx4ivhcTkRO/giphy-downsized.gif" height={233} width={350} />
   ));
