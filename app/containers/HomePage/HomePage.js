@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import ReposList from 'components/ReposList';
+import PopularGrid from 'containers/PopularGrid';
 import './style.scss';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -27,8 +28,9 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
       error,
       repos,
     };
+    return (<PopularGrid />);
 
-    return (
+    /*return (
       <article>
         <Helmet>
           <title>Home Page</title>
@@ -58,7 +60,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
           </section>
         </div>
       </article>
-    );
+    );*/
   }
 }
 

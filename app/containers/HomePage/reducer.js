@@ -15,11 +15,25 @@ import { CHANGE_USERNAME } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  username: ''
+  username: '',
+  search: null,
+  battleMode: false,
+  winner: null,
+  challenger: null
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
+    case 'SEARCH_CATEGORY':
+      return { ...state, search: action.search };
+    case 'ENTER_BATTLEMODE':
+      return {
+        ...state, battleMode: true, winner: action.winner, challenger: action.challenger
+      };
+    case 'EXIT_BATTLEMODE':
+      return {
+        ...state, battleMode: false, winner: null, challenger: null
+      };
     case CHANGE_USERNAME:
       // Delete prefixed '@' from the github username
       return state.set('username', action.name.replace(/@/gi, ''));

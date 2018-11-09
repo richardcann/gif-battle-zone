@@ -30,3 +30,24 @@ export function changeUsername(name) {
     name
   };
 }
+
+export function searchCategory(category) {
+  return {
+    type: 'SEARCH_CATEGORY',
+    category
+  };
+}
+
+export function enterBattle(champion, challenger) {
+  return {
+    type: 'ENTER_BATTLEMODE',
+    champion,
+    challenger
+  };
+}
+
+export function exitBattle() {
+  return {
+    type: 'EXIT_BATTLEMODE',
+  };
+}

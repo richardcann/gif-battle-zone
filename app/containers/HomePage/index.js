@@ -9,7 +9,7 @@ import {
   makeSelectError
 } from 'containers/App/selectors';
 import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
+import { changeUsername, searchCategory, enterBattle, exitBattle } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -20,15 +20,27 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmitForm: (evt) => {
     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
     dispatch(loadRepos());
-  }
+  },
+  onSearchCategory: (category) => dispatch(searchCategory(category)),
+  onEnterBattle: (contenders) => dispatch(enterBattle(contenders.champion, contenders.challenger)),
+  onExitBattle: () => dispatch(exitBattle())
+
 });
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps2 = createStructuredSelector({
   repos: makeSelectRepos(),
   username: makeSelectUsername(),
   loading: makeSelectLoading(),
   error: makeSelectError()
 });
+
+function mapStateToProps(state) {
+  // const { search, battleMode, winner, challenger } = state;
+  return {
+    ...state.home,
+    mapStateToProps2
+  };
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
