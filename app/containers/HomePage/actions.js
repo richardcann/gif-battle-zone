@@ -16,6 +16,7 @@
  */
 
 import { CHANGE_USERNAME } from './constants';
+import request from 'utils/request';
 
 /**
  * Changes the input field of the form
@@ -31,9 +32,9 @@ export function changeUsername(name) {
   };
 }
 
-export function searchCategory(category) {
+export function setCategory(category) {
   return {
-    type: 'SEARCH_CATEGORY',
+    type: 'SET_CATEGORY',
     category
   };
 }
@@ -49,5 +50,41 @@ export function enterBattle(champion, challenger) {
 export function exitBattle() {
   return {
     type: 'EXIT_BATTLEMODE',
+  };
+}
+
+export function fetchSuccess(data) {
+  return {
+    type: 'FETCH_SUCCESS',
+    data
+  };
+}
+
+export function fetchFailure(err) {
+  return {
+    type: 'FETCH_FAILURE',
+    err
+  };
+}
+export function searchCategory(category) {
+  return (dispatch) => {
+    dispatch(setCategory(category));
+    const queryString = category.replace(' ', '+');
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=zOb0S9i7P9TmeVyjexNsTilOlFpYbptn&limit=5`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          response.json().then((res) => dispatch(fetchSuccess(res.data)));
+        } else {
+          const error = new Error(response.statusText);
+          error.response = response;
+          dispatch(fetchFailure(error));
+          throw error;
+        }
+      });
   };
 }

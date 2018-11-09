@@ -19,21 +19,46 @@ const initialState = fromJS({
   search: null,
   battleMode: false,
   winner: null,
-  challenger: null
+  challenger: null,
+  loading: false,
+  error: false,
+  data: {
+    gifs: false,
+  }
 });
 
-function homeReducer(state = initialState, action) {
+function homeReducer(state, action) {
+  state = state || initialState;
   switch (action.type) {
     case 'SEARCH_CATEGORY':
-      return { ...state, search: action.search };
+      return state.set('loading', true)
+        .set('error', false)
+        .setIn(['data', 'gifs'], false);
+      //return {...state, loading: true, error: false, data : {gifs: false}};
+    case 'FETCH_SUCCESS':
+      return state.set('loading', false)
+        .set('battleMode', true)
+        .set('winner', 0)
+        .set('challenger', 1)
+        .setIn(['data', 'gifs'], action.data);
+      //return {...state, loading: false, battleMode: true, winner: 0, challenger: 1, data: {gifs: action.data}};
+    case 'SET_CATEGORY':
+      return state.set('search', action.category);
+      //return {...state, search: action.category};
+    case 'FETCH_FAILURE':
+      return state.set('loading', false)
+        .set('error', action.err);
+      //return {...state, loading:false, error: action.err};
     case 'ENTER_BATTLEMODE':
-      return {
-        ...state, battleMode: true, winner: action.winner, challenger: action.challenger
-      };
+      return state.set('battleMode', true)
+        .set('winner', action.champion)
+        .set('challenger', action.challenger);
+      //return {...state, battleMode: true, winner: action.winner, challenger: action.challenger};
     case 'EXIT_BATTLEMODE':
-      return {
-        ...state, battleMode: false, winner: null, challenger: null
-      };
+      return state.set('battleMode', false)
+        .set('winner', null)
+        .set('challenger', null);
+      //return {...state, battleMode: false, winner: null, challenger: null};
     case CHANGE_USERNAME:
       // Delete prefixed '@' from the github username
       return state.set('username', action.name.replace(/@/gi, ''));

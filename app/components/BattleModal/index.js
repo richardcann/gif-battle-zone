@@ -1,39 +1,37 @@
 // @flow
 import 'antd/lib/modal/style/css';
-import 'antd/lib/button/style/css';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 import React from 'react';
+import DisplayCard from '../DisplayCard';
 
 type BattleProps = {
   visible: boolean,
-  Champion: React$Element<>,
-  Challenger: React$Element<>
+  champion: number,
+  challenger: number,
+  onCancel: () => null,
+  onWin: (number) => null,
 }
 
-function BattleModal(props : BattleProps){
-  const { Champion, Challenger } = props;
-  let { visible } = props;
-
-  function setModalVisible(modal2Visible) {
-    visible = modal2Visible;
-  }
-
+function BattleModal(props : BattleProps) {
+  const {
+    champion, challenger, onCancel, visible, onWin
+  } = props;
   return (
     <div>
-      <Button type="primary" onClick={() => setModalVisible(true)}>Battle</Button>
       <Modal
-        title="Vertically centered modal dialog"
         centered
         visible={visible}
-        onOk={() => setModalVisible(false)}
-        onCancel={() => setModalVisible(false)}
+        onCancel={onCancel}
         footer={null}
       >
-        {Champion}
-        {Challenger}
+        {champion && challenger ? (
+          <div>
+            <DisplayCard id={champion.id} url={champion.img.url} height={champion.img.height} width={champion.img.width} onClick={onWin} />
+            <DisplayCard id={challenger.id} url={challenger.img.url} height={challenger.img.height} width={challenger.img.width} onClick={onWin} />
+          </div>
+        ) : null}
       </Modal>
     </div>
   );
 }
-
 export default BattleModal;

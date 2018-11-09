@@ -6,15 +6,17 @@ import { Input } from 'antd';
 const Search = Input.Search;
 
 type BarProps = {
-  placeholder: string
+  placeholder: string,
+  value?: string,
+  onSearch: (string) => null
 }
 
 export default function SearchBar(props : BarProps) {
-  const { placeholder } = props;
+  const { placeholder, onSearch } = props;
   return (
     <Search
       placeholder={placeholder}
-      onSearch={(value) => console.log(value)}
+      onSearch={onSearch}
       enterButton
     />);
 }
