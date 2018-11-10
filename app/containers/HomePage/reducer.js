@@ -21,6 +21,7 @@ const initialState = fromJS({
   winner: null,
   challenger: null,
   loading: false,
+  animateLoss: false,
   error: false,
   data: {
     gifs: false,
@@ -44,6 +45,8 @@ function homeReducer(state, action) {
       //return {...state, loading: false, battleMode: true, winner: 0, challenger: 1, data: {gifs: action.data}};
     case 'SET_CATEGORY':
       return state.set('search', action.category);
+    case 'ANIMATE_LOSS':
+      return state.set('animateLoss', action.loser);
       //return {...state, search: action.category};
     case 'FETCH_FAILURE':
       return state.set('loading', false)
@@ -52,6 +55,7 @@ function homeReducer(state, action) {
     case 'ENTER_BATTLEMODE':
       return state.set('battleMode', true)
         .set('winner', action.champion)
+        .set('animateLoss', false)
         .set('challenger', action.challenger);
       //return {...state, battleMode: true, winner: action.winner, challenger: action.challenger};
     case 'EXIT_BATTLEMODE':

@@ -6,8 +6,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import ReposList from 'components/ReposList';
 import PopularGrid from 'containers/PopularGrid';
 import BattleModal from 'components/BattleModal';
 import './style.scss';
@@ -22,6 +20,14 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     }
   }
   onWin = (newWinner) => {
+      if (newWinner === this.props.winner) {
+        this.props.animateLoss(this.props.challenger);
+      } else {
+        this.props.animateLoss(this.props.winner);
+      }
+  };
+
+  setNewBattle = (newWinner) => {
     if (this.props.challenger + 1 < this.props.gifs.length) {
       this.props.enterBattle({champion: newWinner, challenger: this.props.challenger + 1});
     } else {
@@ -31,7 +37,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
 
   render() {
     const {
-      onSearchCategory, battleMode, gifs, winner, challenger, enterBattle, exitBattle, onChangeUsername, username
+      onSearchCategory, battleMode, gifs, winner, challenger, enterBattle, exitBattle, onChangeUsername, username, animatingLoss
     } = this.props;
 
     const winnerData = winner !== null ? {
@@ -45,7 +51,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <div>
         <PopularGrid onSearch={onSearchCategory} />
-        <BattleModal visible={battleMode} onCancel={exitBattle} onWin={this.onWin} champion={winnerData} challenger={challengerData} />
+        <BattleModal visible={battleMode} onCancel={exitBattle} newBattle={this.setNewBattle} animateLoss={animatingLoss} onWin={this.onWin} champion={winnerData} challenger={challengerData} />
       </div>
     );
   }

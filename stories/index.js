@@ -7,7 +7,18 @@ import SearchBar from '../app/components/SearchBar';
 import DisplayCard from '../app/components/DisplayCard';
 import BattleModal from '../app/components/BattleModal';
 
-const PirateCard = <DisplayCard url="https://media0.giphy.com/media/WyNx4ivhcTkRO/giphy-downsized.gif" height={233} width={350} />;
+const winnerData ={
+  id: 0,
+  img: {url:"https://media0.giphy.com/media/WyNx4ivhcTkRO/giphy-downsized.gif", height:233, width:350 }
+};
+const challengerData = {
+  id: 1,
+  img: {
+    "url": "https://media1.giphy.com/media/WVveMIgdKyXVm/giphy-tumblr.gif",
+    "width": 250,
+    "height": 140,
+  }
+};
 storiesOf('Button', module)
   .add('with text', () => (
     <CategoryButton onClick={action('clicked')} name="test buttton" />
@@ -20,10 +31,13 @@ storiesOf('SearchBar', module)
 
 storiesOf('DisplayCard', module)
   .add('gif', () => (
-    <DisplayCard url="https://media0.giphy.com/media/WyNx4ivhcTkRO/giphy-downsized.gif" height={233} width={350} />
+    <DisplayCard id={challengerData.id} url={challengerData.img.url} height={challengerData.img.height} width={challengerData.img.width} onClick={()=>{}} />
+  ))
+  .add('other gif', () => (
+    <DisplayCard id={winnerData.id} url={winnerData.img.url} height={winnerData.img.height} width={winnerData.img.width} onClick={()=>{}} />
   ));
 
 storiesOf('BattleModal', module)
   .add('modal', () => (
-    <BattleModal visible={true} Champion={PirateCard} Challenger={PirateCard} />
+    <BattleModal visible={true} onCancel={()=>{}} onWin={()=>{}} champion={winnerData} challenger={challengerData} />
   ));

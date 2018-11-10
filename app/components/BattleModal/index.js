@@ -3,6 +3,7 @@ import 'antd/lib/modal/style/css';
 import { Modal } from 'antd';
 import React from 'react';
 import DisplayCard from '../DisplayCard';
+import './style.scss';
 
 type BattleProps = {
   visible: boolean,
@@ -10,12 +11,21 @@ type BattleProps = {
   challenger: number,
   onCancel: () => null,
   onWin: (number) => null,
+  animateLoss: boolean | number
 }
 
 function BattleModal(props : BattleProps) {
   const {
-    champion, challenger, onCancel, visible, onWin
+    champion, challenger, onCancel, visible, onWin, animateLoss, newBattle
   } = props;
+  if (animateLoss !== false && champion && challenger){
+    if(animateLoss === champion.id){
+      champion.className = 'animate bounceOut';
+    }
+    else if (animateLoss === challenger.id){
+      challenger.className = 'animate bounceOut';
+    }
+  }
   return (
     <div>
       <Modal
@@ -23,11 +33,20 @@ function BattleModal(props : BattleProps) {
         visible={visible}
         onCancel={onCancel}
         footer={null}
+        className="BattleModal-modal"
       >
         {champion && challenger ? (
-          <div>
-            <DisplayCard id={champion.id} url={champion.img.url} height={champion.img.height} width={champion.img.width} onClick={onWin} />
-            <DisplayCard id={challenger.id} url={challenger.img.url} height={challenger.img.height} width={challenger.img.width} onClick={onWin} />
+          <div className="BattleModal-container">
+            <DisplayCard
+              id={champion.id}
+              className={champion.className}
+              animationEnd={() => newBattle(challenger.id)}
+              url={champion.img.url}
+              height={champion.img.height}
+              width={champion.img.width}
+              onClick={onWin}/>
+            <img className="BattleModal-versus" src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" />
+            <DisplayCard id={challenger.id} className={challenger.className} animationEnd={() => newBattle(champion.id)} url={challenger.img.url} height={challenger.img.height} width={challenger.img.width} onClick={onWin} />
           </div>
         ) : null}
       </Modal>

@@ -9,7 +9,7 @@ import injectSaga from 'utils/injectSaga';
   makeSelectError
 } from 'containers/App/selectors';*/
 import { loadRepos } from '../App/actions';
-import { changeUsername, searchCategory, enterBattle, exitBattle } from './actions';
+import { changeUsername, searchCategory, enterBattle, exitBattle, animateLoss } from './actions';
 import * as selectors from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onSearchCategory: (category) => dispatch(searchCategory(category)),
   enterBattle: (contenders) => dispatch(enterBattle(contenders.champion, contenders.challenger)),
-  exitBattle: () => dispatch(exitBattle())
+  exitBattle: () => dispatch(exitBattle()),
+  animateLoss: (loser) => dispatch(animateLoss(loser))
 
 });
 
@@ -35,7 +36,8 @@ const mapStateToProps = createStructuredSelector({
   search: selectors.makeSelectSearch(),
   winner: selectors.makeSelectWinner(),
   challenger: selectors.makeSelectChallenger(),
-  gifs: selectors.makeSelectGifs()
+  gifs: selectors.makeSelectGifs(),
+  animatingLoss: selectors.makeSelectAnimateLoss()
 });
 
 /*function mapStateToProps2(state) {

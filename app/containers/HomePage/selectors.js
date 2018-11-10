@@ -41,6 +41,11 @@ export const makeSelectError = () => createSelector(
   (homeState) => homeState.get('error')
 );
 
+export const makeSelectAnimateLoss = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('animateLoss')
+);
+
 export const makeSelectGifs = () => createSelector(
   selectHome,
   (globalState) => globalState.getIn(['data', 'gifs'])

@@ -66,11 +66,19 @@ export function fetchFailure(err) {
     err
   };
 }
+
+export function animateLoss(loser) {
+  return {
+    type: 'ANIMATE_LOSS',
+    loser
+  };
+}
+
 export function searchCategory(category) {
   return (dispatch) => {
     dispatch(setCategory(category));
     const queryString = category.replace(' ', '+');
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=zOb0S9i7P9TmeVyjexNsTilOlFpYbptn&limit=5`, {
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=zOb0S9i7P9TmeVyjexNsTilOlFpYbptn&limit=10`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
