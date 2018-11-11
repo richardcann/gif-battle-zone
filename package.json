@@ -2,6 +2,7 @@
   "name": "react-redux-boilerplate",
   "version": "1.0.0",
   "description": "A minimal react-redux boilerplate with all the best practices",
+  "homepage": "https://rmcp1g15.github.io/react-redux-boilerplate/",
   "repository": {
     "type": "git",
     "url": "git://github.com/flexdinesh/react-redux-boilerplate.git"
@@ -28,7 +29,9 @@
     "test:clean": "rimraf ./coverage",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@material-ui/core": "^3.4.0",
@@ -40,6 +43,7 @@
     "cross-env": "^5.1.6",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
+    "gh-pages": "^2.0.1",
     "history": "4.7.2",
     "hoist-non-react-statics": "2.5.0",
     "immutable": "3.8.2",
