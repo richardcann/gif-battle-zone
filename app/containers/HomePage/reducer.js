@@ -61,6 +61,7 @@ function homeReducer(state, action) {
     case 'EXIT_BATTLEMODE':
       return state.set('battleMode', false)
         .set('winner', null)
+        .set('animateLoss', false)
         .set('challenger', null);
       //return {...state, battleMode: false, winner: null, challenger: null};
     case CHANGE_USERNAME:

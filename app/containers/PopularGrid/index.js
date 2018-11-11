@@ -15,13 +15,13 @@ export default function PopularGrid(props) {
       </Row>
       <br />
       <Row type="flex" justify="space-between">
-        <Col span={4}><CategoryButton name={defaultCats[0]} /></Col>
-        <Col span={4}><CategoryButton name={defaultCats[1]} /></Col>
-        <Col span={4}><CategoryButton name={defaultCats[2]} /></Col>
+        <Col span={4}><CategoryButton name={defaultCats[0]} onClick={onSearch} /></Col>
+        <Col span={4}><CategoryButton name={defaultCats[1]} onClick={onSearch} /></Col>
+        <Col span={4}><CategoryButton name={defaultCats[2]} onClick={onSearch} /></Col>
       </Row>
       <Row type="flex" justify="space-around">
-        <Col span={4}><CategoryButton name={defaultCats[3]} /></Col>
-        <Col span={4}><CategoryButton name={defaultCats[4]} /></Col>
+        <Col span={4}><CategoryButton name={defaultCats[3]} onClick={onSearch} /></Col>
+        <Col span={4}><CategoryButton name={defaultCats[4]} onClick={onSearch} /></Col>
       </Row>
     </div>);
 }
