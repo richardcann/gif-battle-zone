@@ -9,7 +9,7 @@ import injectSaga from 'utils/injectSaga';
   makeSelectError
 } from 'containers/App/selectors';*/
 import { loadRepos } from '../App/actions';
-import { changeUsername, searchCategory, enterBattle, exitBattle, animateLoss } from './actions';
+import { changeUsername, searchCategory, closeError, setTrends, enterBattle, exitBattle, animateLoss, setRecommendations, setRating, addRating } from './actions';
 import * as selectors from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -24,8 +24,12 @@ const mapDispatchToProps = (dispatch) => ({
   onSearchCategory: (category) => dispatch(searchCategory(category)),
   enterBattle: (contenders) => dispatch(enterBattle(contenders.champion, contenders.challenger)),
   exitBattle: () => dispatch(exitBattle()),
-  animateLoss: (loser) => dispatch(animateLoss(loser))
-
+  animateLoss: (loser) => dispatch(animateLoss(loser)),
+  setRecommendations: (recommendations) => dispatch(setRecommendations(recommendations)),
+  setRating: (rating) => dispatch(setRating(rating)),
+  addRating: (rating, category) => dispatch(addRating(rating, category)),
+  setTrends: () => dispatch(setTrends()),
+  closeError: () => dispatch(closeError())
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -37,7 +41,10 @@ const mapStateToProps = createStructuredSelector({
   winner: selectors.makeSelectWinner(),
   challenger: selectors.makeSelectChallenger(),
   gifs: selectors.makeSelectGifs(),
-  animatingLoss: selectors.makeSelectAnimateLoss()
+  animatingLoss: selectors.makeSelectAnimateLoss(),
+  recommended: selectors.makeSelectRecommended(),
+  currentRating: selectors.makeSelectRating(),
+  trends: selectors.makeSelectTrends()
 });
 
 /*function mapStateToProps2(state) {

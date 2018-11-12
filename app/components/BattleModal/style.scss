@@ -1,6 +1,7 @@
 .BattleModal-container {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .BattleModal-modal {
@@ -11,4 +12,11 @@
   width: 5em;
   height: 5em;
   align-self: center;
+}
+
+.BattleModal-rater {
+  padding-top: 1em;
+  label {
+    font-family: inherit;
+  }
 }

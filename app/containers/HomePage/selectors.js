@@ -46,6 +46,21 @@ export const makeSelectAnimateLoss = () => createSelector(
   (homeState) => homeState.get('animateLoss')
 );
 
+export const makeSelectRecommended = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('recommended')
+);
+
+export const makeSelectRating = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('currentRating')
+);
+
+export const makeSelectTrends = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('trends')
+);
+
 export const makeSelectGifs = () => createSelector(
   selectHome,
   (globalState) => globalState.getIn(['data', 'gifs'])

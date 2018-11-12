@@ -16,6 +16,7 @@
  */
 
 import { CHANGE_USERNAME } from './constants';
+import {setNewRating, getRecommendations} from 'utils/Recommender';
 import request from 'utils/request';
 
 /**
@@ -74,11 +75,52 @@ export function animateLoss(loser) {
   };
 }
 
+export function setRecommendations(recommendations) {
+  return {
+    type: 'SET_RECOMMENDATIONS',
+    recommendations
+  };
+}
+
+export function setRating(rating) {
+  return {
+    type: 'SET_RATING',
+    rating
+  };
+}
+
+export function closeError() {
+  return {
+    type: 'ERROR_CLOSE'
+  };
+}
+
+export function addRating(rating, category) {
+  return (dispatch) => {
+    setNewRating(category, rating);
+    const recommendations = getRecommendations();
+    dispatch(setRecommendations(recommendations));
+  };
+}
+
+export function setTrends(){
+  return (dispatch) => {
+    fetch('/twitter_trends', {
+      method: 'GET',
+    })
+      .then((response) => {
+        if (response.status >= 200 && response.status < 300) {
+          response.json().then((res) => dispatch({type: 'SET_TRENDS', trends: res[0].trends}));
+        }
+      });
+  };
+}
+
 export function searchCategory(category) {
   return (dispatch) => {
     dispatch(setCategory(category));
     const queryString = category.replace(' ', '+');
-    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=zOb0S9i7P9TmeVyjexNsTilOlFpYbptn&limit=10`, {
+    fetch(`http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=zOb0S9i7P9TmeVyjexNsTilOlFpYbptn&limit=20`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -86,7 +128,14 @@ export function searchCategory(category) {
     })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          response.json().then((res) => dispatch(fetchSuccess(res.data)));
+          response.json().then((res) => {
+            if(res.data.length > 0){
+              dispatch(fetchSuccess(res.data));
+            }
+            else{
+              dispatch(fetchFailure({noData: true}));
+            }
+          });
         } else {
           const error = new Error(response.statusText);
           error.response = response;

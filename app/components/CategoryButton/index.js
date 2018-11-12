@@ -5,13 +5,14 @@ import { Button } from 'antd';
 
 type InputProps = {
   name: string,
-  onClick: (string) => null
+  onClick: (string) => null,
+  displayName?: string
 }
 
 export default function CategoryButton(props : InputProps) {
-  const { name, onClick } = props;
+  const { name, onClick, displayName } = props;
   return(
     <Button onClick={() => onClick(name)} type="dashed" size="large">
-      {name}
+      {displayName ? displayName : name}
     </Button>)
 }

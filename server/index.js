@@ -1,6 +1,8 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
+const request = require('request');
+const cors = require('cors');
 const logger = require('./util//logger');
 
 const argv = require('./util/argv');
@@ -12,6 +14,30 @@ const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
+
+// enable cors
+const corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+};
+app.use(cors(corsOption));
+
+app.get('/twitter_trends', (req, res) => {
+  request.get({
+    url:`https://api.twitter.com/1.1/trends/place.json?id=44418`,
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      Authorization: 'OAuth oauth_consumer_key="cDZT2V1kG05HWdcz3UbwlBfUk",oauth_token="604858048-61eSfrcP0KkfMPXo1sCPI1Nme3z1ZAOuMkZlL6Id",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1542024635",oauth_nonce="KmGMM5CsOTL",oauth_version="1.0",oauth_signature="vFML%2Fwny0nYsci4PS%2BwsiYj%2BR7g%3D"'
+    },
+  }, function (err, r, body) {
+    if (err) {
+      return res.send(500, { message: err.message });
+    }
+    res.send(body);
+  });
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

@@ -1,6 +1,7 @@
 // @flow
 import 'antd/lib/modal/style/css';
-import { Modal } from 'antd';
+import 'antd/lib/rate/style/css';
+import { Modal, Rate } from 'antd';
 import React from 'react';
 import DisplayCard from '../DisplayCard';
 import './style.scss';
@@ -16,7 +17,7 @@ type BattleProps = {
 
 function BattleModal(props : BattleProps) {
   const {
-    champion, challenger, onCancel, visible, onWin, animateLoss, newBattle
+    champion, challenger, onCancel, visible, onWin, animateLoss, newBattle, setRating
   } = props;
   if (animateLoss !== false && champion && challenger){
     if(animateLoss === champion.id){
@@ -47,6 +48,10 @@ function BattleModal(props : BattleProps) {
               onClick={onWin}/>
             <img className="BattleModal-versus" src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" />
             <DisplayCard id={challenger.id} className={challenger.className} animationEnd={() => newBattle(champion.id)} url={challenger.img.url} height={challenger.img.height} width={challenger.img.width} onClick={onWin} />
+            <div className="BattleModal-rater">
+              <label>Rate this category: </label>
+              <Rate allowHalf defaultValue={2.5} onChange={setRating}/>
+            </div>
           </div>
         ) : null}
       </Modal>
