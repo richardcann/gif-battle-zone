@@ -11,11 +11,10 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
 import './style.scss';
 
 
-function App(props) {
+function App() {
   return (
     <div className="app-wrapper">
       <Helmet
@@ -27,15 +26,11 @@ function App(props) {
       <br />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
         <Route path="" component={HomePage} />
       </Switch>
       <br />
     </div>
   );
 }
-/* const App = (props) => (
-
-); */
 
 export default App;

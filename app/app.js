@@ -30,11 +30,8 @@ import 'styles/theme.scss';
 
 import configureStore from './configureStore';
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
 const openSansObserver = new FontFaceObserver('Open Sans', {});
 
-// When Open Sans is loaded, add a font-family using Open Sans to the body
 openSansObserver.load().then(() => {
   document.body.classList.add('fontLoaded');
 }, () => {
@@ -59,9 +56,6 @@ const render = () => {
 };
 
 if (module.hot) {
-  // Hot reloadable React components and translation json files
-  // modules.hot.accept does not accept dynamic dependencies,
-  // have to be constants at compile-time
   module.hot.accept(['containers/App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
