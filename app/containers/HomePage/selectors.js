@@ -61,6 +61,16 @@ export const makeSelectTrends = () => createSelector(
   (homeState) => homeState.get('trends')
 );
 
+export const makeSelectHomeGifLeft = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('homeGifLeft')
+);
+
+export const makeSelectHomeGifRight = () => createSelector(
+  selectHome,
+  (homeState) => homeState.get('homeGifRight')
+);
+
 export const makeSelectGifs = () => createSelector(
   selectHome,
   (globalState) => globalState.getIn(['data', 'gifs'])

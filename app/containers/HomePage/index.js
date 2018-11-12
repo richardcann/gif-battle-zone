@@ -9,7 +9,7 @@ import injectSaga from 'utils/injectSaga';
   makeSelectError
 } from 'containers/App/selectors';*/
 import { loadRepos } from '../App/actions';
-import { changeUsername, searchCategory, closeError, setTrends, enterBattle, exitBattle, animateLoss, setRecommendations, setRating, addRating } from './actions';
+import { changeUsername, searchCategory, setHomeGifLeft, setHomeGifRight, closeError, setTrends, enterBattle, exitBattle, animateLoss, setRecommendations, setRating, addRating } from './actions';
 import * as selectors from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,7 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
   setRating: (rating) => dispatch(setRating(rating)),
   addRating: (rating, category) => dispatch(addRating(rating, category)),
   setTrends: () => dispatch(setTrends()),
-  closeError: () => dispatch(closeError())
+  closeError: () => dispatch(closeError()),
+  setHomeGifLeft: () => dispatch(setHomeGifLeft()),
+  setHomeGifRight: () => dispatch(setHomeGifRight())
 });
 
 const mapStateToProps = createStructuredSelector({
@@ -44,7 +46,9 @@ const mapStateToProps = createStructuredSelector({
   animatingLoss: selectors.makeSelectAnimateLoss(),
   recommended: selectors.makeSelectRecommended(),
   currentRating: selectors.makeSelectRating(),
-  trends: selectors.makeSelectTrends()
+  trends: selectors.makeSelectTrends(),
+  homeGifLeft: selectors.makeSelectHomeGifLeft(),
+  homeGifRight: selectors.makeSelectHomeGifRight()
 });
 
 /*function mapStateToProps2(state) {

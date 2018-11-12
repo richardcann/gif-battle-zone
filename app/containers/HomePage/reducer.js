@@ -25,6 +25,8 @@ const initialState = fromJS({
   error: false,
   recommended: null,
   currentRating: null,
+  homeGifLeft: null,
+  homeGifRight: null,
   trends: [],
   data: {
     gifs: false,
@@ -38,6 +40,10 @@ function homeReducer(state, action) {
       return state.set('loading', true)
         .set('error', false)
         .setIn(['data', 'gifs'], false);
+    case 'SET_HOMEGIFLEFT':
+      return state.set('homeGifLeft', action.gif);
+    case 'SET_HOMEGIFRIGHT':
+      return state.set('homeGifRight', action.gif);
     case 'SET_RECOMMENDATIONS':
       return state.set('recommended', action.recommendations);
     case 'SET_RATING':

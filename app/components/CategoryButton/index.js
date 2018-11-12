@@ -6,13 +6,14 @@ import { Button } from 'antd';
 type InputProps = {
   name: string,
   onClick: (string) => null,
-  displayName?: string
+  displayName?: string,
+  type?: string
 }
 
 export default function CategoryButton(props : InputProps) {
-  const { name, onClick, displayName } = props;
+  const { name, onClick, displayName, type } = props;
   return(
-    <Button onClick={() => onClick(name)} type="dashed" size="large">
+    <Button onClick={() => onClick(name)} type={type ? type : "dashed"} size="large">
       {displayName ? displayName : name}
     </Button>)
 }

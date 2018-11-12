@@ -7,7 +7,6 @@ import CategoryButton from 'components/CategoryButton';
 
 export default function PopularGrid(props) {
   const { searchValue, onSearch, recommended, trends } = props;
-  console.log(trends);
 
   const parseString = (word) =>{
     if(word.charAt(0) === '#'){
@@ -33,12 +32,14 @@ export default function PopularGrid(props) {
   };
   return (
     <div>
-      <Row>
-        <Col span={12} offset={6}><SearchBar placeholder="Search for a fun category" value={searchValue} onSearch={onSearch} /></Col>
+      <Row type="flex" justify="space-around" align="middle">
+        <Col span={12} offset={4}><SearchBar placeholder="Search for any category..." value={searchValue} onSearch={onSearch} /></Col>
+        <Col span={4}><CategoryButton name={'trending'} onClick={onSearch} type='danger' /></Col>
       </Row>
       <br />
       {recommended ? (
         <div>
+          <h2>Our gif experts recommend:</h2>
           <Row type="flex" justify="space-between">
             <Col span={4}><CategoryButton name={recommended[0]} onClick={onSearch} /></Col>
             <Col span={4}><CategoryButton name={recommended[1]} onClick={onSearch} /></Col>
@@ -50,8 +51,10 @@ export default function PopularGrid(props) {
           </Row>
         </div>
       ): null}
+      <br />
       {trends && trends.length > 5 ? (
         <div>
+          <h3>... or search what is trending on twitter:</h3>
           <Row type="flex" justify="space-between">
             <Col span={4}><CategoryButton displayName={trends[0].name} name={parseString(trends[0].name)} onClick={onSearch} /></Col>
             <Col span={4}><CategoryButton displayName={trends[1].name} name={parseString(trends[1].name)} onClick={onSearch} /></Col>
@@ -60,6 +63,11 @@ export default function PopularGrid(props) {
           <Row type="flex" justify="space-around">
             <Col span={4}><CategoryButton displayName={trends[3].name} name={parseString(trends[3].name)} onClick={onSearch} /></Col>
             <Col span={4}><CategoryButton displayName={trends[4].name} name={parseString(trends[4].name)} onClick={onSearch} /></Col>
+          </Row>
+          <Row type="flex" justify="space-between">
+            <Col span={4}><CategoryButton displayName={trends[5].name} name={parseString(trends[5].name)} onClick={onSearch} /></Col>
+            <Col span={4}><CategoryButton displayName={trends[6].name} name={parseString(trends[6].name)} onClick={onSearch} /></Col>
+            <Col span={4}><CategoryButton displayName={trends[7].name} name={parseString(trends[7].name)} onClick={onSearch} /></Col>
           </Row>
         </div>
       ): null}
