@@ -176,9 +176,9 @@ export function searchCategory(category) {
   return (dispatch) => {
     dispatch(setCategory(category));
     const queryString = category.replace(' ', '+');
-    let url = `http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l`;
+    let url = `http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=bzLQOOhBEGrMA83RoiuCQPLsLRPNARQf&limit=5`;
     if(queryString.toLowerCase() === 'trending'){
-      url = `http://api.giphy.com/v1/gifs/trending?api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l`;
+      url = `http://api.giphy.com/v1/gifs/trending?api_key=bzLQOOhBEGrMA83RoiuCQPLsLRPNARQf&limit=5`;
     }
     fetch(url, {
       method: 'GET',
