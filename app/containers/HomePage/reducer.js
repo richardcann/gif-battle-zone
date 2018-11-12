@@ -11,11 +11,8 @@
  */
 import { fromJS } from 'immutable';
 
-import { CHANGE_USERNAME } from './constants';
-
 // The initial state of the App
 const initialState = fromJS({
-  username: '',
   search: null,
   battleMode: false,
   winner: null,
@@ -77,9 +74,6 @@ function homeReducer(state, action) {
         .set('winner', null)
         .set('animateLoss', false)
         .set('challenger', null);
-    case CHANGE_USERNAME:
-      // Delete prefixed '@' from the github username
-      return state.set('username', action.name.replace(/@/gi, ''));
     default:
       return state;
   }
