@@ -1,18 +1,4 @@
-import { CHANGE_USERNAME } from './constants';
-import {setNewRating, getRecommendations} from 'utils/Recommender';
-/**
- * Changes the input field of the form
- *
- * @param  {name} name The new text of the input field
- *
- * @return {object}    An action object with a type of CHANGE_USERNAME
- */
-export function changeUsername(name) {
-  return {
-    type: CHANGE_USERNAME,
-    name
-  };
-}
+import { setNewRating, getRecommendations } from 'utils/Recommender';
 
 export function setCategory(category) {
   return {
@@ -84,22 +70,22 @@ export function addRating(rating, category) {
   };
 }
 
-export function setTrends(){
+export function setTrends() {
   return (dispatch) => {
     fetch('/twitter_trends', {
       method: 'GET',
     })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          response.json().then((res) => dispatch({type: 'SET_TRENDS', trends: res[0].trends}));
+          response.json().then((res) => dispatch({ type: 'SET_TRENDS', trends: res[0].trends }));
         }
       });
   };
 }
 
-export function setHomeGifLeft(){
+export function setHomeGifLeft() {
   return (dispatch) => {
-    const url = `http://api.giphy.com/v1/gifs/random?api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l`;
+    const url = 'http://api.giphy.com/v1/gifs/random?api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l';
     fetch(url, {
       method: 'GET',
       headers: {
@@ -109,10 +95,9 @@ export function setHomeGifLeft(){
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
           response.json().then((res) => {
-            if(res.data) {
-              dispatch({type: 'SET_HOMEGIFLEFT', gif: res.data.images.downsized});
-            }
-            else{
+            if (res.data) {
+              dispatch({ type: 'SET_HOMEGIFLEFT', gif: res.data.images.downsized });
+            } else {
               throw new Error('No Gif Data');
             }
           });
@@ -125,9 +110,9 @@ export function setHomeGifLeft(){
   };
 }
 
-export function setHomeGifRight(){
+export function setHomeGifRight() {
   return (dispatch) => {
-    const url = `http://api.giphy.com/v1/gifs/random?api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l`;
+    const url = 'http://api.giphy.com/v1/gifs/random?api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l';
     fetch(url, {
       method: 'GET',
       headers: {
@@ -137,10 +122,9 @@ export function setHomeGifRight(){
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
           response.json().then((res) => {
-            if(res.data) {
-              dispatch({type: 'SET_HOMEGIFRIGHT', gif: res.data.images.downsized});
-            }
-            else{
+            if (res.data) {
+              dispatch({ type: 'SET_HOMEGIFRIGHT', gif: res.data.images.downsized });
+            } else {
               throw new Error('No Gif Data');
             }
           });
@@ -158,8 +142,8 @@ export function searchCategory(category) {
     dispatch(setCategory(category));
     const queryString = category.replace(' ', '+');
     let url = `http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=bzLQOOhBEGrMA83RoiuCQPLsLRPNARQf&limit=5`;
-    if(queryString.toLowerCase() === 'trending'){
-      url = `http://api.giphy.com/v1/gifs/trending?api_key=bzLQOOhBEGrMA83RoiuCQPLsLRPNARQf&limit=5`;
+    if (queryString.toLowerCase() === 'trending') {
+      url = 'http://api.giphy.com/v1/gifs/trending?api_key=bzLQOOhBEGrMA83RoiuCQPLsLRPNARQf&limit=5';
     }
     fetch(url, {
       method: 'GET',
@@ -170,11 +154,10 @@ export function searchCategory(category) {
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
           response.json().then((res) => {
-            if(res.data.length > 0){
+            if (res.data.length > 0) {
               dispatch(fetchSuccess(res.data));
-            }
-            else{
-              dispatch(fetchFailure({noData: true}));
+            } else {
+              dispatch(fetchFailure({ noData: true }));
             }
           });
         } else {

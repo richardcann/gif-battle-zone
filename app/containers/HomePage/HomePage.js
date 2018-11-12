@@ -18,11 +18,11 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     if (this.props.username && this.props.username.trim().length > 0) {
       this.props.onSubmitForm();
     }
-    if(this.props.homeGifLeft === null){
+    if (this.props.homeGifLeft === null) {
       console.log('no left');
       this.props.setHomeGifLeft();
     }
-    if(this.props.homeGifRight === null){
+    if (this.props.homeGifRight === null) {
       console.log('no right');
       this.props.setHomeGifRight();
     }
@@ -39,10 +39,9 @@ export default class HomePage extends React.Component { // eslint-disable-line r
   };
 
   onHomeWin = (newWinner) => {
-    if(newWinner === 0){
+    if (newWinner === 0) {
       this.props.setHomeGifRight();
-    }
-    else if(newWinner === 1){
+    } else if (newWinner === 1) {
       this.props.setHomeGifLeft();
     }
   };
@@ -57,7 +56,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 
   render() {
     const {
-      onSearchCategory, setRating, addRating, homeGifLeft, homeGifRight, closeError, trends, error, search, currentRating, recommended, battleMode, gifs, winner, challenger, enterBattle, exitBattle, animatingLoss
+      onSearchCategory, setRating, addRating, homeGifLeft, homeGifRight, closeError, trends, error, search, currentRating, recommended, battleMode, gifs, winner, challenger, exitBattle, animatingLoss
     } = this.props;
 
     const winnerData = battleMode && winner !== null ? {
@@ -70,8 +69,9 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     } : null;
     return (
       <div>
-        <Header media={{left: homeGifLeft, right: homeGifRight}} onClick={(winner) => this.onHomeWin(winner)} />
-      {/*{error && error.noData ? (message.warning('There are no gifs for that category :(', 2.5, closeError)) : null}*/}
+        <Header media={{ left: homeGifLeft, right: homeGifRight }} onClick={(winner) => this.onHomeWin(winner)} />
+        <br />
+        {/* {error && error.noData ? (message.warning('There are no gifs for that category :(', 2.5, closeError)) : null} */}
         <div>
           <PopularGrid onSearch={onSearchCategory} recommended={recommended} trends={trends} />
           <BattleModal visible={battleMode} setRating={setRating} onCancel={() => { addRating(currentRating, search); exitBattle(); }} newBattle={this.setNewBattle} animateLoss={animatingLoss} onWin={this.onWin} champion={winnerData} challenger={challengerData} />

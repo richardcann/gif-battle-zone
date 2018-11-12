@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import injectReducer from 'utils/injectReducer';
 import { searchCategory, setHomeGifLeft, setHomeGifRight, closeError, setTrends, enterBattle, exitBattle, animateLoss, setRecommendations, setRating, addRating } from './actions';
 import * as selectors from './selectors';
-import reducer from './reducer';
 import HomePage from './HomePage';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,7 +20,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  username: selectors.makeSelectUsername(),
   loading: selectors.makeSelectLoading(),
   error: selectors.makeSelectError(),
   battleMode: selectors.makeSelectBattleMode(),
@@ -40,7 +37,5 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'home', reducer });
-
-export default compose(withReducer, withConnect)(HomePage);
+export default compose(withConnect)(HomePage);
 export { mapDispatchToProps };

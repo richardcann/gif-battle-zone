@@ -6,11 +6,6 @@ import { createSelector } from 'reselect';
 
 const selectHome = (state) => state.get('home');
 
-const makeSelectUsername = () => createSelector(
-  selectHome,
-  (homeState) => homeState.get('username')
-);
-
 export const makeSelectSearch = () => createSelector(
   selectHome,
   (homeState) => homeState.get('search')
@@ -76,7 +71,4 @@ export const makeSelectGifs = () => createSelector(
   (globalState) => globalState.getIn(['data', 'gifs'])
 );
 
-export {
-  selectHome,
-  makeSelectUsername,
-};
+export { selectHome };
