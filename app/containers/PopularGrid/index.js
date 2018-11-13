@@ -5,13 +5,7 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import SearchBar from 'components/SearchBar';
 import CategoryButton from 'components/CategoryButton';
-
-type PopularGridProps = {
-  searchValue: string,
-  onSearch: (string) => null,
-  recommended: Array<string>,
-  trends: Array<{name : string}>
-}
+import type { PopularGridProps } from './types';
 
 export default function PopularGrid(props : PopularGridProps) {
   const {

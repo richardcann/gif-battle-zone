@@ -4,18 +4,7 @@ import React from 'react';
 import { Card } from 'antd';
 import LoadingIndicator from '../LoadingIndicator';
 import './style.scss';
-
-type DisplayProps = {
-  url: string,
-  id: number,
-  onClick: (number) => null,
-  className?: string,
-  animationEnd?: () => null
-}
-
-type DisplayState = {
-  loading: boolean
-};
+import type { DisplayProps, DisplayState } from './types';
 
 export default class DisplayCard extends React.Component<DisplayProps, DisplayState> {
   constructor() {

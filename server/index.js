@@ -29,7 +29,7 @@ app.get('/twitter_trends', (req, res) => {
       'Access-Control-Allow-Origin': '*',
       Authorization: 'OAuth oauth_consumer_key="cDZT2V1kG05HWdcz3UbwlBfUk",oauth_token="604858048-61eSfrcP0KkfMPXo1sCPI1Nme3z1ZAOuMkZlL6Id",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1542024635",oauth_nonce="KmGMM5CsOTL",oauth_version="1.0",oauth_signature="vFML%2Fwny0nYsci4PS%2BwsiYj%2BR7g%3D"'
     },
-  }, function (err, r, body) {
+  }, (err, r, body) => {
     if (err) {
       return res.send(500, { message: err.message });
     }

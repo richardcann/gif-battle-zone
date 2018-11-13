@@ -5,14 +5,14 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import './style.scss';
 
-function App() {
+export default function App() {
   return (
     <div className="app-wrapper">
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - GifBattleZone"
+        defaultTitle="GifBattleZone"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="Gif showdown." />
       </Helmet>
       <br />
       <Switch>
@@ -23,5 +23,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

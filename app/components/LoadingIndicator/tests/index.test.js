@@ -1,11 +1,11 @@
+// @flow
 import React from 'react';
-import { render } from 'enzyme';
-
+import { shallow } from 'enzyme';
 import LoadingIndicator from '../index';
 
 describe('<LoadingIndicator />', () => {
-  it('should render 13 divs', () => {
-    const renderedComponent = render(<LoadingIndicator />);
-    expect(renderedComponent.length).toBe(1);
+  it('should render loading divs', () => {
+    const renderedComponent = shallow(<LoadingIndicator />);
+    expect(renderedComponent.length).toEqual(1);
   });
 });

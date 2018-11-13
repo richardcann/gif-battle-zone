@@ -1,17 +1,18 @@
 // @flow
 import { setNewRating, getRecommendations } from 'utils/Recommender';
+import * as consts from './constants';
 import type { GifData } from './types';
 
 export function setCategory(category : string) {
   return {
-    type: 'SET_CATEGORY',
+    type: consts.SET_CATEGORY,
     category
   };
 }
 
 export function enterBattle(champion : number, challenger : number) {
   return {
-    type: 'ENTER_BATTLEMODE',
+    type: consts.ENTER_BATTLEMODE,
     champion,
     challenger
   };
@@ -19,48 +20,48 @@ export function enterBattle(champion : number, challenger : number) {
 
 export function exitBattle() {
   return {
-    type: 'EXIT_BATTLEMODE',
+    type: consts.EXIT_BATTLEMODE,
   };
 }
 
 export function fetchSuccess(data : GifData) {
   return {
-    type: 'FETCH_SUCCESS',
+    type: consts.FETCH_SUCCESS,
     data
   };
 }
 
 export function fetchFailure(err : {[string] : string | boolean}) {
   return {
-    type: 'FETCH_FAILURE',
+    type: consts.FETCH_FAILURE,
     err
   };
 }
 
 export function animateLoss(loser : boolean | number) {
   return {
-    type: 'ANIMATE_LOSS',
+    type: consts.ANIMATE_LOSS,
     loser
   };
 }
 
 export function setRecommendations(recommendations : Array<string>) {
   return {
-    type: 'SET_RECOMMENDATIONS',
+    type: consts.SET_RECOMMENDATIONS,
     recommendations
   };
 }
 
 export function setRating(rating : number) {
   return {
-    type: 'SET_RATING',
+    type: consts.SET_RATING,
     rating
   };
 }
 
 export function closeError() {
   return {
-    type: 'ERROR_CLOSE'
+    type: consts.ERROR_CLOSE
   };
 }
 
@@ -79,7 +80,7 @@ export function setTrends() {
     })
       .then((response) => {
         if (response.status >= 200 && response.status < 300) {
-          response.json().then((res) => dispatch({ type: 'SET_TRENDS', trends: res[0].trends }));
+          response.json().then((res) => dispatch({ type: consts.SET_TRENDS, trends: res[0].trends }));
         }
       });
   };
@@ -98,7 +99,7 @@ export function setHomeGifLeft() {
         if (response.status >= 200 && response.status < 300) {
           response.json().then((res) => {
             if (res.data) {
-              dispatch({ type: 'SET_HOMEGIFLEFT', gif: res.data.images.downsized });
+              dispatch({ type: consts.SET_HOMEGIFLEFT, gif: res.data.images.downsized });
             } else {
               throw new Error('No Gif Data');
             }
@@ -123,7 +124,7 @@ export function setHomeGifRight() {
         if (response.status >= 200 && response.status < 300) {
           response.json().then((res) => {
             if (res.data) {
-              dispatch({ type: 'SET_HOMEGIFRIGHT', gif: res.data.images.downsized });
+              dispatch({ type: consts.SET_HOMEGIFRIGHT, gif: res.data.images.downsized });
             } else {
               throw new Error('No Gif Data');
             }

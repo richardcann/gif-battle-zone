@@ -2,16 +2,8 @@
 import React from 'react';
 import DisplayCard from '../DisplayCard';
 import './style.scss';
+import type { HeaderProps } from './types';
 
-type MediaType = {
-  left: {url : string},
-  right: {url : string}
-}
-
-type HeaderProps = {
-  media: MediaType,
-  onClick: () => null
-}
 class Header extends React.Component<HeaderProps> { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { media, onClick } = this.props;

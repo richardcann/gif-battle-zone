@@ -2,13 +2,7 @@
 import 'antd/lib/button/style/css';
 import React from 'react';
 import { Button } from 'antd';
-
-type InputProps = {
-  name: string,
-  onClick: (string) => null,
-  displayName?: string,
-  type?: string
-}
+import type { InputProps } from './types';
 
 export default function CategoryButton(props : InputProps) {
   const {

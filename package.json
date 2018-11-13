@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-boilerplate",
+  "name": "GifBattleZone",
   "version": "1.0.0",
-  "description": "A minimal react-redux boilerplate with all the best practices",
+  "description": "Pick the best gifs :)",
   "homepage": "https://rmcp1g15.github.io/react-redux-boilerplate/",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Dinesh Pandiyan",
+  "author": "Richard Cann",
   "license": "MIT",
   "scripts": {
     "prebuild": "npm run build:clean",
