@@ -1,12 +1,10 @@
-<img src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" alt="gif battle zone icon" style="padding-left: 7em;" width="100px" height="100px" align="center" />
 
-<br />
-
-<div align="center">Choose the best gifs you can think of.</div>
+<div align="center"><h1>Choose the best gifs you can think of.</h1></div>
 
 <br />
 
 <div align="center">
+  <img src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" alt="gif battle zone icon" style="padding-left: 7em;" width="100px" height="100px" align="center" />
   <sub>Created by <a href="https://github.com/rmcp1g15">Richard Cann</a></sub>
 </div>
 
