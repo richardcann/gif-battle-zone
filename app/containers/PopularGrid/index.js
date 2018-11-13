@@ -12,6 +12,10 @@ export default function PopularGrid(props : PopularGridProps) {
     searchValue, onSearch, recommended, trends
   } = props;
 
+  /*
+  function will accept a string, get rid of hashtags and add a space
+  when needed e.g. 12November -> 12 November, safeJourney -> safe Journey
+   */
   const parseString = (word) => {
     if (word.charAt(0) === '#') {
       word = word.slice(1);

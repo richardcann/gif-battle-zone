@@ -73,6 +73,9 @@ export function addRating(rating : number, category : string) {
   };
 }
 
+/*
+Connecting to backend server to get the array of trends on twitter
+ */
 export function setTrends() {
   return (dispatch) => {
     fetch('/twitter_trends', {

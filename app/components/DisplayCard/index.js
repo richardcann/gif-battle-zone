@@ -23,7 +23,9 @@ export default class DisplayCard extends React.Component<DisplayProps, DisplaySt
       );
     }
   }
-
+  /*
+  generates random hex number for the colour
+   */
   getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';

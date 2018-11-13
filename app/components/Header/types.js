@@ -6,5 +6,7 @@ type MediaType = {
 
 export type HeaderProps = {
   media: MediaType,
-  onClick: () => null
+  onClick: () => null,
+  error: boolean,
+  closeError: () => null
 }

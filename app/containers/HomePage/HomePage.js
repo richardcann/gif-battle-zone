@@ -1,16 +1,9 @@
 // @flow
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-import 'antd/lib/message/style/css';
 import React from 'react';
 import PopularGrid from 'containers/PopularGrid';
 import BattleModal from 'components/BattleModal';
 import { getRecommendations } from 'utils/Recommender';
 import Header from 'components/Header';
-import { message } from 'antd';
 import './style.scss';
 import type { HomePageProps } from './types';
 
@@ -52,7 +45,23 @@ export default class HomePage extends React.Component<HomePageProps> { // eslint
 
   render() {
     const {
-      onSearchCategory, setRating, addRating, homeGifLeft, homeGifRight, closeError, trends, error, search, currentRating, recommended, battleMode, gifs, winner, challenger, exitBattle, animatingLoss
+      onSearchCategory,
+      setRating,
+      addRating,
+      homeGifLeft,
+      homeGifRight,
+      closeError,
+      trends,
+      error,
+      search,
+      currentRating,
+      recommended,
+      battleMode,
+      gifs,
+      winner,
+      challenger,
+      exitBattle,
+      animatingLoss
     } = this.props;
 
     const winnerData = battleMode && winner !== null ? {
@@ -65,12 +74,25 @@ export default class HomePage extends React.Component<HomePageProps> { // eslint
     } : null;
     return (
       <div>
-        <Header media={{ left: homeGifLeft, right: homeGifRight }} onClick={(newWinner) => this.onHomeWin(newWinner)} />
+        <Header
+          media={{ left: homeGifLeft, right: homeGifRight }}
+          onClick={(newWinner) => this.onHomeWin(newWinner)}
+          error={error}
+          closeError={closeError}
+        />
         <br />
-        {/* {error && error.noData ? (message.warning('There are no gifs for that category :(', 2.5, closeError)) : null} */}
         <div>
           <PopularGrid onSearch={onSearchCategory} recommended={recommended} trends={trends} />
-          <BattleModal visible={battleMode} setRating={setRating} onCancel={() => { addRating(currentRating, search); exitBattle(); }} newBattle={this.setNewBattle} animateLoss={animatingLoss} onWin={this.onWin} champion={winnerData} challenger={challengerData} />
+          <BattleModal
+            visible={battleMode}
+            setRating={setRating}
+            onCancel={() => { addRating(currentRating, search); exitBattle(); }}
+            newBattle={this.setNewBattle}
+            animateLoss={animatingLoss}
+            onWin={this.onWin}
+            champion={winnerData}
+            challenger={challengerData}
+          />
         </div>
       </div>
     );

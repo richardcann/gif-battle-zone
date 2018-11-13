@@ -1,5 +1,6 @@
 import randomWords from 'random-words';
 
+// default categories to recommend
 const dataset = {
   'Expert One': {
     dog: 2.5,
@@ -21,7 +22,8 @@ const dataset = {
   }
 };
 
-const len = function (obj) {
+// gets object length
+const len = (obj) => {
   let len = 0;
   for (const i in obj) {
     len++;
@@ -29,7 +31,7 @@ const len = function (obj) {
   return len;
 };
 
-// calculate the euclidean distance btw two items
+// calculate the euclidean distance between two items
 const euclidean_score = function (dataset, p1, p2) {
   const existp1p2 = {};
   for (const key in dataset[p1]) {
@@ -49,12 +51,13 @@ const euclidean_score = function (dataset, p1, p2) {
     for (let i = 0; i < sum_of_euclidean_dist.length; i++) {
       sum += sum_of_euclidean_dist[i];
     }
+    // closer to one is more similar
     const sum_sqrt = 1 / (1 + Math.sqrt(sum));
     return sum_sqrt;
   }
 };
 
-const similar_user = function (dataset, person, num_user, distance) {
+const similar_user = (dataset, person, num_user, distance) => {
   const scores = [];
   for (const others in dataset) {
     if (others != person && typeof (dataset[others]) !== 'function') {
@@ -70,7 +73,16 @@ const similar_user = function (dataset, person, num_user, distance) {
   }
   return score;
 };
-const recommendation_eng = function (dataset, person, distance) {
+
+/*
+Will get a dataset of poeple to recommendations, the person we need to recommend for,
+and distance metric
+Have to compare given person with all people in dataset to see how close they are
+then for each item not in given person dataset multiply the recommendation by similarity
+score between two people
+The output is a ranked list of recommendation items
+ */
+const recommendation_eng = (dataset, person, distance) => {
   let totals = {
       setDefault(props, value) {
         if (!this[props]) {
@@ -117,11 +129,16 @@ const recommendation_eng = function (dataset, person, distance) {
   return [rank_lst, recommend];
 };
 
+// random number between 0-5 inclusive
 function getRandomRating() {
   return Math.random() * (6);
 }
 
 export const getRecommendations = (() => recommendation_eng(dataset, 'AverageJoe', euclidean_score)[1]);
+/*
+ every time a category is searched, our critics become wiser and a random word
+ is chosen where both critics give a random recommendation
+  */
 export const setNewRating = ((category, rating) => {
   const newCategory = randomWords();
   const criticOneNewRating = getRandomRating();
