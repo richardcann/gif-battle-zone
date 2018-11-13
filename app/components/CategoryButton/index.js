@@ -11,9 +11,11 @@ type InputProps = {
 }
 
 export default function CategoryButton(props : InputProps) {
-  const { name, onClick, displayName, type } = props;
-  return(
-    <Button onClick={() => onClick(name)} type={type ? type : "dashed"} size="large">
-      {displayName ? displayName : name}
-    </Button>)
+  const {
+    name, onClick, displayName, type
+  } = props;
+  return (
+    <Button onClick={() => onClick(name)} type={type || 'dashed'} size="large">
+      {displayName || name}
+    </Button>);
 }

@@ -1,13 +1,15 @@
+// @flow
 import { setNewRating, getRecommendations } from 'utils/Recommender';
+import type { GifData } from './types';
 
-export function setCategory(category) {
+export function setCategory(category : string) {
   return {
     type: 'SET_CATEGORY',
     category
   };
 }
 
-export function enterBattle(champion, challenger) {
+export function enterBattle(champion : number, challenger : number) {
   return {
     type: 'ENTER_BATTLEMODE',
     champion,
@@ -21,35 +23,35 @@ export function exitBattle() {
   };
 }
 
-export function fetchSuccess(data) {
+export function fetchSuccess(data : GifData) {
   return {
     type: 'FETCH_SUCCESS',
     data
   };
 }
 
-export function fetchFailure(err) {
+export function fetchFailure(err : {[string] : string | boolean}) {
   return {
     type: 'FETCH_FAILURE',
     err
   };
 }
 
-export function animateLoss(loser) {
+export function animateLoss(loser : boolean | number) {
   return {
     type: 'ANIMATE_LOSS',
     loser
   };
 }
 
-export function setRecommendations(recommendations) {
+export function setRecommendations(recommendations : Array<string>) {
   return {
     type: 'SET_RECOMMENDATIONS',
     recommendations
   };
 }
 
-export function setRating(rating) {
+export function setRating(rating : number) {
   return {
     type: 'SET_RATING',
     rating
@@ -62,7 +64,7 @@ export function closeError() {
   };
 }
 
-export function addRating(rating, category) {
+export function addRating(rating : number, category : string) {
   return (dispatch) => {
     setNewRating(category, rating);
     const recommendations = getRecommendations();
@@ -102,9 +104,7 @@ export function setHomeGifLeft() {
             }
           });
         } else {
-          const error = new Error(response.statusText);
-          error.response = response;
-          throw error;
+          throw new Error(response.statusText);
         }
       });
   };
@@ -129,15 +129,13 @@ export function setHomeGifRight() {
             }
           });
         } else {
-          const error = new Error(response.statusText);
-          error.response = response;
-          throw error;
+          throw new Error(response.statusText);
         }
       });
   };
 }
 
-export function searchCategory(category) {
+export function searchCategory(category : string) {
   return (dispatch) => {
     dispatch(setCategory(category));
     const queryString = category.replace(' ', '+');
@@ -161,10 +159,8 @@ export function searchCategory(category) {
             }
           });
         } else {
-          const error = new Error(response.statusText);
-          error.response = response;
-          dispatch(fetchFailure(error));
-          throw error;
+          dispatch(fetchFailure({ fetchError: true }));
+          throw new Error(response.statusText);
         }
       });
   };

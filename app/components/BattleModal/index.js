@@ -6,24 +6,31 @@ import React from 'react';
 import DisplayCard from '../DisplayCard';
 import './style.scss';
 
+type Contender = {
+  id: number,
+  className?: string,
+  img: {url : string}
+}
+
 type BattleProps = {
   visible: boolean,
-  champion: number,
-  challenger: number,
+  champion: Contender,
+  challenger: Contender,
   onCancel: () => null,
   onWin: (number) => null,
-  animateLoss: boolean | number
+  animateLoss: boolean | number,
+  newBattle: (number) => null,
+  setRating: (number) => null
 }
 
 function BattleModal(props : BattleProps) {
   const {
     champion, challenger, onCancel, visible, onWin, animateLoss, newBattle, setRating
   } = props;
-  if (animateLoss !== false && champion && challenger){
-    if(animateLoss === champion.id){
+  if (animateLoss !== false && champion && challenger) {
+    if (animateLoss === champion.id) {
       champion.className = 'animate bounceOut';
-    }
-    else if (animateLoss === challenger.id){
+    } else if (animateLoss === challenger.id) {
       challenger.className = 'animate bounceOut';
     }
   }
@@ -43,14 +50,13 @@ function BattleModal(props : BattleProps) {
               className={champion.className}
               animationEnd={() => newBattle(challenger.id)}
               url={champion.img.url}
-              height={champion.img.height}
-              width={champion.img.width}
-              onClick={onWin}/>
-            <img className="BattleModal-versus" src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" />
-            <DisplayCard id={challenger.id} className={challenger.className} animationEnd={() => newBattle(champion.id)} url={challenger.img.url} height={challenger.img.height} width={challenger.img.width} onClick={onWin} />
+              onClick={onWin}
+            />
+            <img alt="versus" className="BattleModal-versus" src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" />
+            <DisplayCard id={challenger.id} className={challenger.className} animationEnd={() => newBattle(champion.id)} url={challenger.img.url} onClick={onWin} />
             <div className="BattleModal-rater">
               <label>Rate this category: </label>
-              <Rate allowHalf defaultValue={2.5} onChange={setRating}/>
+              <Rate allowHalf defaultValue={2.5} onChange={setRating} />
             </div>
           </div>
         ) : null}

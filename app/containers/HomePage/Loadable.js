@@ -1,3 +1,4 @@
+// @flow
 /**
  * Asynchronously loads the component for HomePage
  */

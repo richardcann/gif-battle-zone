@@ -1,5 +1,4 @@
 import randomWords from 'random-words';
-import {fetchFailure, fetchSuccess} from "../../containers/HomePage/actions";
 
 const dataset = {
   'Expert One': {
@@ -30,11 +29,9 @@ const len = function (obj) {
   return len;
 };
 
-// calculate the euclidean distance btw two item
+// calculate the euclidean distance btw two items
 const euclidean_score = function (dataset, p1, p2) {
-  const existp1p2 = {};// store item existing in both item
-  // if dataset is in p1 and p2
-  // store it in as one
+  const existp1p2 = {};
   for (const key in dataset[p1]) {
     if (key in dataset[p2]) {
       existp1p2[key] = 1;
@@ -50,11 +47,8 @@ const euclidean_score = function (dataset, p1, p2) {
     }
     let sum = 0;
     for (let i = 0; i < sum_of_euclidean_dist.length; i++) {
-      sum += sum_of_euclidean_dist[i]; // calculate the sum of the euclidean
+      sum += sum_of_euclidean_dist[i];
     }
-    // since the sum will be small for familiar user
-    // and larger for non-familiar user
-    // we make it exist btwn 0 and 1
     const sum_sqrt = 1 / (1 + Math.sqrt(sum));
     return sum_sqrt;
   }
@@ -78,12 +72,6 @@ const similar_user = function (dataset, person, num_user, distance) {
 };
 const recommendation_eng = function (dataset, person, distance) {
   let totals = {
-      // you can avoid creating a setter function
-      // like this in the object you found them
-      // since it just check if the object has the property if not create
-      // and add the value to it.
-      // and  because of this setter that why a function property
-      // is created in the dataset, when we transform them.
       setDefault(props, value) {
         if (!this[props]) {
           this[props] = 0;
@@ -108,16 +96,13 @@ const recommendation_eng = function (dataset, person, distance) {
     if (similar <= 0) continue;
     for (var item in dataset[other]) {
       if (!(item in dataset[person]) || (dataset[person][item] == 0)) {
-        // the setter help to make this look nice.
         totals.setDefault(item, dataset[other][item] * similar);
         simsum.setDefault(item, similar);
       }
     }
   }
 
-  for (var item in totals) {
-    // this what the setter function does
-    // so we have to find a way to avoid the function in the object
+  for (let item in totals) {
     if (typeof totals[item] !== 'function') {
       const val = totals[item] / simsum[item];
       rank_lst.push({ val, items: item });
@@ -131,17 +116,6 @@ const recommendation_eng = function (dataset, person, distance) {
   }
   return [rank_lst, recommend];
 };
-
-export const isExpertCategory = ((category) => {
-  for(const expert in dataset){
-    if(expert !== 'AverageJoe'){
-      if(typeof dataset[expert][category] !== 'undefined'){
-        return true;
-      }
-    }
-  }
-  return false;
-});
 
 function getRandomRating() {
   return Math.random() * (6);

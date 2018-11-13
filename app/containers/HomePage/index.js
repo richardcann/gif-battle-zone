@@ -1,3 +1,4 @@
+// @flow
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -6,13 +7,13 @@ import * as selectors from './selectors';
 import HomePage from './HomePage';
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearchCategory: (category) => dispatch(searchCategory(category)),
-  enterBattle: (contenders) => dispatch(enterBattle(contenders.champion, contenders.challenger)),
+  onSearchCategory: (category : string) => dispatch(searchCategory(category)),
+  enterBattle: (contenders : {champion : number, challenger : number}) => dispatch(enterBattle(contenders.champion, contenders.challenger)),
   exitBattle: () => dispatch(exitBattle()),
-  animateLoss: (loser) => dispatch(animateLoss(loser)),
-  setRecommendations: (recommendations) => dispatch(setRecommendations(recommendations)),
-  setRating: (rating) => dispatch(setRating(rating)),
-  addRating: (rating, category) => dispatch(addRating(rating, category)),
+  animateLoss: (loser : number | boolean) => dispatch(animateLoss(loser)),
+  setRecommendations: (recommendations : Array<string>) => dispatch(setRecommendations(recommendations)),
+  setRating: (rating : number) => dispatch(setRating(rating)),
+  addRating: (rating : number, category : string) => dispatch(addRating(rating, category)),
   setTrends: () => dispatch(setTrends()),
   closeError: () => dispatch(closeError()),
   setHomeGifLeft: () => dispatch(setHomeGifLeft()),

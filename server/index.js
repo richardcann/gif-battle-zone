@@ -12,9 +12,6 @@ const { resolve } = require('path');
 
 const app = express();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
-
 // enable cors
 const corsOption = {
   origin: true,
@@ -23,6 +20,7 @@ const corsOption = {
 };
 app.use(cors(corsOption));
 
+// getting twitter trends in london
 app.get('/twitter_trends', (req, res) => {
   request.get({
     url:`https://api.twitter.com/1.1/trends/place.json?id=44418`,

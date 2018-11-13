@@ -1,15 +1,6 @@
-/*
- * HomeReducer
- *
- * The reducer takes care of our data. Using actions, we can change our
- * application state.
- * To add a new action, add it to the switch statement in the reducer function
- *
- * Example:
- * case YOUR_ACTION_CONSTANT:
- *   return state.set('yourStateVariable', true);
- */
+// @flow
 import { fromJS } from 'immutable';
+import type { State } from './types';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -30,7 +21,7 @@ const initialState = fromJS({
   }
 });
 
-function homeReducer(state, action) {
+function homeReducer(state : State, action) {
   state = state || initialState;
   switch (action.type) {
     case 'SEARCH_CATEGORY':

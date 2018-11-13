@@ -7,7 +7,6 @@ const Search = Input.Search;
 
 type BarProps = {
   placeholder: string,
-  value?: string,
   onSearch: (string) => null
 }
 

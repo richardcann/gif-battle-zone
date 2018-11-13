@@ -1,3 +1,4 @@
+// @flow
 /*
  * HomePage
  *
@@ -5,32 +6,27 @@
  */
 import 'antd/lib/message/style/css';
 import React from 'react';
-import PropTypes from 'prop-types';
 import PopularGrid from 'containers/PopularGrid';
 import BattleModal from 'components/BattleModal';
 import { getRecommendations } from 'utils/Recommender';
 import Header from 'components/Header';
 import { message } from 'antd';
 import './style.scss';
+import type { HomePageProps } from './types';
 
-export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+export default class HomePage extends React.Component<HomePageProps> { // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
     if (this.props.homeGifLeft === null) {
-      console.log('no left');
       this.props.setHomeGifLeft();
     }
     if (this.props.homeGifRight === null) {
-      console.log('no right');
       this.props.setHomeGifRight();
     }
     const recommendations = getRecommendations();
     this.props.setRecommendations(recommendations);
     this.props.setTrends();
   }
-  onWin = (newWinner) => {
+  onWin = (newWinner : number) => {
     if (newWinner === this.props.winner) {
       this.props.animateLoss(this.props.challenger);
     } else {
@@ -38,7 +34,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     }
   };
 
-  onHomeWin = (newWinner) => {
+  onHomeWin = (newWinner : number) => {
     if (newWinner === 0) {
       this.props.setHomeGifRight();
     } else if (newWinner === 1) {
@@ -46,7 +42,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     }
   };
 
-  setNewBattle = (newWinner) => {
+  setNewBattle = (newWinner : number) => {
     if (this.props.challenger + 1 < this.props.gifs.length) {
       this.props.enterBattle({ champion: newWinner, challenger: this.props.challenger + 1 });
     } else {
@@ -69,7 +65,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     } : null;
     return (
       <div>
-        <Header media={{ left: homeGifLeft, right: homeGifRight }} onClick={(winner) => this.onHomeWin(winner)} />
+        <Header media={{ left: homeGifLeft, right: homeGifRight }} onClick={(newWinner) => this.onHomeWin(newWinner)} />
         <br />
         {/* {error && error.noData ? (message.warning('There are no gifs for that category :(', 2.5, closeError)) : null} */}
         <div>

@@ -1,3 +1,4 @@
+// @flow
 /**
  * Homepage selectors
  */
