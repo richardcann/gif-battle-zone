@@ -1,4 +1,4 @@
-<img src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" alt="gif battle zone icon" align="center" />
+<img src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" alt="gif battle zone icon" width="100px" height="100px" align="center" />
 
 <br />
 
