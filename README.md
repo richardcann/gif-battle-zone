@@ -1,6 +1,5 @@
 
 <div align="center"><h1>Choose the best gifs you can think of.</h1></div>
-<img src="https://rsmconnect.com/wp-content/uploads/Icon-vs.png" alt="gif battle zone icon" style="padding-left: 7em;" width="100px" height="100px" align="center" />
 
 <br />
 
