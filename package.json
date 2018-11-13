@@ -5,7 +5,7 @@
   "homepage": "https://rmcp1g15.github.io/gif-battle-zone/",
   "repository": {
     "type": "git",
-    "url": "git://github.com/flexdinesh/react-redux-boilerplate.git"
+    "url": "git://github.com/rmcp1g15/gif-battle-zone.git"
   },
   "engines": {
     "npm": ">=3",
