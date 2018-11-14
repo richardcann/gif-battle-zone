@@ -91,7 +91,7 @@ export function setTrends() {
 
 export function setHomeGifLeft() {
   return (dispatch) => {
-    const url = 'http://api.giphy.com/v1/gifs/random?api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l';
+    const url = 'http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
     fetch(url, {
       method: 'GET',
       headers: {
@@ -116,7 +116,7 @@ export function setHomeGifLeft() {
 
 export function setHomeGifRight() {
   return (dispatch) => {
-    const url = 'http://api.giphy.com/v1/gifs/random?api_key=BP9gxNYx1AFHZ8aaT7uzm8GfkZJfAV8l';
+    const url = 'http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
     fetch(url, {
       method: 'GET',
       headers: {
@@ -143,9 +143,9 @@ export function searchCategory(category : string) {
   return (dispatch) => {
     dispatch(setCategory(category));
     const queryString = category.replace(' ', '+');
-    let url = `http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=bzLQOOhBEGrMA83RoiuCQPLsLRPNARQf&limit=5`;
+    let url = `http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=p0m7nO5lSQbTJ26AQUWCCxGFqXo4GPeH&limit=5`;
     if (queryString.toLowerCase() === 'trending') {
-      url = 'http://api.giphy.com/v1/gifs/trending?api_key=bzLQOOhBEGrMA83RoiuCQPLsLRPNARQf&limit=5';
+      url = 'http://api.giphy.com/v1/gifs/trending?api_key=p0m7nO5lSQbTJ26AQUWCCxGFqXo4GPeH&limit=5';
     }
     fetch(url, {
       method: 'GET',
