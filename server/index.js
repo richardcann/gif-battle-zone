@@ -27,7 +27,7 @@ app.get('/twitter_trends', (req, res) => {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      Authorization: `OAuth oauth_consumer_key="cDZT2V1kG05HWdcz3UbwlBfUk",oauth_token="604858048-61eSfrcP0KkfMPXo1sCPI1Nme3z1ZAOuMkZlL6Id",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1542930204",oauth_nonce="u9TqONhhRNf",oauth_version="1.0",oauth_signature="YmA2Wx7xaZOt7lrbQf4iq914W5A%3D"`
+      Authorization: `OAuth oauth_consumer_key="cDZT2V1kG05HWdcz3UbwlBfUk",oauth_token="604858048-61eSfrcP0KkfMPXo1sCPI1Nme3z1ZAOuMkZlL6Id",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1543175385",oauth_nonce="431woqNVZb9",oauth_version="1.0",oauth_signature="w2l8yCKJm13B2C33xR4OOI0f1Hc%3D"`
     },
   }, (err, r, body) => {
     if (err) {
