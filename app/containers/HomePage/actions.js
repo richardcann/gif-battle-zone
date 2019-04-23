@@ -82,6 +82,7 @@ export function setTrends() {
       method: 'GET',
     })
       .then((response) => {
+        console.log(response);
         if (response.status >= 200 && response.status < 300) {
           response.json().then((res) => dispatch({ type: consts.SET_TRENDS, trends: res[0].trends }));
         }
