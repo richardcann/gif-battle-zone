@@ -21,7 +21,7 @@ const corsOption = {
 app.use(cors(corsOption));
 
 // getting twitter trends in london
-/*app.get('/twitter_trends', (req, res) => {
+app.get('/twitter_trends', (req, res) => {
   const date = new Date();
   const timestamp = date.getTime();
   console.log(timestamp);
@@ -31,21 +31,6 @@ app.use(cors(corsOption));
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       Authorization: `OAuth oauth_consumer_key="cDZT2V1kG05HWdcz3UbwlBfUk",oauth_token="604858048-61eSfrcP0KkfMPXo1sCPI1Nme3z1ZAOuMkZlL6Id",oauth_signature_method="HMAC-SHA1",oauth_timestamp="${timestamp}",oauth_nonce="TROTELn7Kny",oauth_version="1.0",oauth_signature="3IdyhCzsjki5I6%2FV3Ai89RVJHRA%3D"`
-    },
-  }, (err, r, body) => {
-    if (err) {
-      return res.send(500, { message: err.message });
-    }
-    res.send(body);
-  });
-});*/
-
-app.get('/twitter_trends', (req, res) => {
-  request.get({
-    url: 'https://cors-anywhere.herokuapp.com/http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     },
   }, (err, r, body) => {
     if (err) {

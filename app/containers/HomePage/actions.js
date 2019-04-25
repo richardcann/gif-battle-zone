@@ -117,7 +117,7 @@ export function setHomeGifLeft() {
 
 export function setHomeGifRight() {
   return (dispatch) => {
-    const url = 'http://apgiphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
+    const url = 'https://cors-anywhere.herokuapp.com/http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
     fetch(url, {
       method: 'GET',
       headers: {
