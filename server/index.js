@@ -21,7 +21,7 @@ const corsOption = {
 app.use(cors(corsOption));
 
 // getting twitter trends in london
-app.get('/twitter_trend', (req, res) => {
+/*app.get('/twitter_trends', (req, res) => {
   const date = new Date();
   const timestamp = date.getTime();
   console.log(timestamp);
@@ -38,14 +38,11 @@ app.get('/twitter_trend', (req, res) => {
     }
     res.send(body);
   });
-});
+});*/
 
 app.get('/twitter_trends', (req, res) => {
-  const date = new Date();
-  const timestamp = date.getTime();
-  console.log(timestamp);
   request.get({
-    url: 'http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC',
+    url: 'https://cors-anywhere.herokuapp.com/http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',

@@ -82,7 +82,7 @@ export function setTrends() {
       method: 'GET',
     })
       .then((response) => {
-        console.log(response);
+        console.log(response.text().then(res => console.log(res)));
         if (response.status >= 200 && response.status < 300) {
           response.json().then((res) => dispatch({ type: consts.SET_TRENDS, trends: res[0].trends }));
         }
@@ -92,7 +92,7 @@ export function setTrends() {
 
 export function setHomeGifLeft() {
   return (dispatch) => {
-    const url = 'http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
+    const url = 'https://cors-anywhere.herokuapp.com/http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
     fetch(url, {
       method: 'GET',
       headers: {
@@ -117,7 +117,7 @@ export function setHomeGifLeft() {
 
 export function setHomeGifRight() {
   return (dispatch) => {
-    const url = 'http://api.giphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
+    const url = 'http://apgiphy.com/v1/gifs/random?api_key=PK45PN4PK2YjaUp2HUCfdwRJ30duCHEC';
     fetch(url, {
       method: 'GET',
       headers: {
