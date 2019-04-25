@@ -144,9 +144,9 @@ export function searchCategory(category : string) {
   return (dispatch) => {
     dispatch(setCategory(category));
     const queryString = category.replace(' ', '+');
-    let url = `http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=p0m7nO5lSQbTJ26AQUWCCxGFqXo4GPeH&limit=5`;
+    let url = `https://cors-anywhere.herokuapp.com/http://api.giphy.com/v1/gifs/search?q=${queryString}&api_key=p0m7nO5lSQbTJ26AQUWCCxGFqXo4GPeH&limit=5`;
     if (queryString.toLowerCase() === 'trending') {
-      url = 'http://api.giphy.com/v1/gifs/trending?api_key=p0m7nO5lSQbTJ26AQUWCCxGFqXo4GPeH&limit=5';
+      url = 'https://cors-anywhere.herokuapp.com/http://api.giphy.com/v1/gifs/trending?api_key=p0m7nO5lSQbTJ26AQUWCCxGFqXo4GPeH&limit=5';
     }
     fetch(url, {
       method: 'GET',
